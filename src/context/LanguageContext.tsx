@@ -110,7 +110,7 @@ const translations: Record<string, Record<Language, string>> = {
 
   // Footer
   "HARITA INTERNATIONAL": { en: "HARITA INTERNATIONAL", ja: "HARITA\nHARITA INTERNATIONAL\n株式会社ハリタ・インターナショナル" },
-  "MENU": { en: "MENU", ja: "MENU" },
+  "MENU": { en: "MENU", ja: "メニュー" },
 
   // About Page
   "About Us": { en: "About Us", ja: "会社案内" },
