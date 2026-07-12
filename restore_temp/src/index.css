@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700&display=swap');
+
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* HARITA brand blue as primary */
+  --background: #030C1A;
+  --foreground: #E8F0F8;
+  --card: #061525;
+  --card-foreground: #E8F0F8;
+  --primary: #1B6FBA;
+  --primary-light: #2E90E8;
+  --primary-bright: #4AAEF5;
+  --primary-foreground: #ffffff;
+  --secondary: #0A1E35;
+  --secondary-foreground: #4AAEF5;
+  --muted: #081830;
+  --muted-foreground: #4A7A9E;
+  --accent: #F0C040;
+  --accent-foreground: #030C1A;
+  --blue: #1B6FBA;
+  --blue-light: #2E90E8;
+  --yellow: #F0C040;
+  --border: rgba(27, 111, 186, 0.2);
+  --ring: #1B6FBA;
+  --radius: 3px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  box-sizing: border-box;
+}
+*:hover {
+  scrollbar-color: rgba(27, 111, 186, 0.25) transparent;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+.font-mono-data { font-family: 'Space Mono', monospace; }
+
+/* ── Keyframes ──────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+@keyframes floatAlt {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-20px) rotate(-2deg); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(27, 111, 186, 0); }
+  50%       { box-shadow: 0 0 40px 12px rgba(27, 111, 186, 0.15); }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes gradientFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes popUp {
+  from { opacity: 0; transform: translateY(48px) scale(0.93); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Animation utilities ────────────────────────────── */
+
+.animate-fadeInUp    { animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fadeInDown  { animation: fadeInDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slideInLeft { animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-scaleIn     { animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-float       { animation: float 5s ease-in-out infinite; }
+.animate-float-alt   { animation: floatAlt 7s ease-in-out infinite; }
+.animate-float-slow  { animation: float 9s ease-in-out infinite; }
+.animate-glow-pulse  { animation: glowPulse 3.5s ease-in-out infinite; }
+.animate-spin-slow   { animation: rotateSlow 24s linear infinite; }
+.animate-marquee     { animation: marquee 30s linear infinite; }
+.animate-popUp       { animation: popUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* ── Scroll reveal system ───────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-52px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(52px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.87);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+.delay-600 { transition-delay: 0.6s; }
+.delay-700 { transition-delay: 0.7s; }
+
+/* ── Glass card ─────────────────────────────────────── */
+
+.glass-card {
+  background: rgba(6, 21, 37, 0.6);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(27, 111, 186, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 64px rgba(0,0,0,0.45);
+}
+
+/* ── Gradient text ─────────────────────────────────── */
+
+.text-gradient-blue {
+  background: linear-gradient(120deg, #1B6FBA 0%, #2E90E8 40%, #4AAEF5 70%, #2E90E8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(120deg, #c9a84c 0%, #f0c040 50%, #c9a84c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ── Blue accent line ───────────────────────────────── */
+
+.blue-line::before {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: linear-gradient(to right, #1B6FBA, #4AAEF5);
+  margin-bottom: 18px;
+}
+
+/* ── Hover interactions ─────────────────────────────── */
+
+.hover-blue { transition: color 0.28s ease; }
+.hover-blue:hover { color: #2E90E8; }
+
+/* ── Blue glow card ─────────────────────────────────── */
+
+.border-blue-glow {
+  border: 1px solid rgba(27, 111, 186, 0.2);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.border-blue-glow:hover {
+  border-color: rgba(46, 144, 232, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(27,111,186,0.08),
+    0 24px 60px rgba(0,0,0,0.5),
+    0 0 40px rgba(27,111,186,0.1);
+  transform: translateY(-5px);
+}
+
+/* keep old name for backwards compat in some pages */
+.border-gold-glow {
+  border: 1px solid rgba(27, 111, 186, 0.18);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.border-gold-glow:hover {
+  border-color: rgba(46, 144, 232, 0.5);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 30px rgba(27,111,186,0.1);
+  transform: translateY(-5px);
+}
+
+/* ── Primary button ─────────────────────────────────── */
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #1B6FBA 0%, #2E90E8 50%, #1B6FBA 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(27,111,186,0.4), 0 0 0 1px rgba(46,144,232,0.3);
+}
+
+/* Keep btn-gold as yellow accent for sparse use */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #1B6FBA 0%, #2E90E8 50%, #1B6FBA 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-gold:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(27,111,186,0.38);
+}
+
+/* ── Section divider ────────────────────────────────── */
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(27,111,186,0.3), transparent);
+}
+
+/* ── Mesh gradient backgrounds ──────────────────────── */
+
+.mesh-dark {
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(27,111,186,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(74,174,245,0.05) 0%, transparent 50%),
+    #030C1A;
+}
+
+.mesh-mid {
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(27,111,186,0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 0%, rgba(46,144,232,0.05) 0%, transparent 45%),
+    #061525;
+}
+
+/* ── Grid overlay ───────────────────────────────────── */
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(27, 111, 186, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 111, 186, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Marquee ────────────────────────────────────────── */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Image zoom ─────────────────────────────────────── */
+
+.img-zoom {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+.group:hover .img-zoom { transform: scale(1.07); }
